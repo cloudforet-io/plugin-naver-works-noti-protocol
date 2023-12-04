@@ -35,7 +35,9 @@ setup(
         'spaceone-api',
         'spaceone-tester',
         'PyJWT',
-        'requests'
+        'requests',
+        'python-dateutil',
+        'pydantic'
     ],
     zip_safe=False,
 )

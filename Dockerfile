@@ -1,7 +1,7 @@
-FROM python:3.8-slim
+FROM cloudforet/python-core:2.0
 
 ENV PYTHONUNBUFFERED 1
-ENV CLOUDONE_PORT 50051
+ENV SPACEONE_PORT 50051
 ENV SERVER_TYPE grpc
 ENV PKG_DIR /tmp/pkg
 ENV SRC_DIR /tmp/src
@@ -11,18 +11,14 @@ RUN apt update && apt upgrade -y
 COPY pkg/*.txt ${PKG_DIR}/
 
 RUN pip install --upgrade pip && \
-    pip install --upgrade -r ${PKG_DIR}/pip_requirements.txt
-
-ARG CACHEBUST=1
-RUN pip install --upgrade --pre spaceone-core spaceone-api
+    pip install --upgrade -r ${PKG_DIR}/pip_requirements.txt && \
+    pip install --upgrade --pre spaceone-notification
 
 COPY src ${SRC_DIR}
-
 WORKDIR ${SRC_DIR}
-RUN python3 setup.py install && \
-    rm -rf /tmp/*
+RUN python3 setup.py install && rm -rf /tmp/*
 
-EXPOSE ${CLOUDONE_PORT}
+EXPOSE ${SPACEONE_PORT}
 
 ENTRYPOINT ["spaceone"]
-CMD ["grpc", "spaceone.notification"]
+CMD ["run", "plugin-server", "plugin"]

@@ -1,2 +1,7 @@
 spaceone-core
 spaceone-api
+python-dateutil
+pydantic
+requests
+PyJWT
+setuptools
