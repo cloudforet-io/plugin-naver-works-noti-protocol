@@ -25,9 +25,9 @@ setup(
     version=VERSION,
     description="Notification plugin for Naver Works",
     long_description="",
-    url="https://www.spaceone.dev/",
-    author="MEGAZONE SpaceONE Team",
-    author_email="admin@spaceone.dev",
+    url="https://cloudforet.io/",
+    author="Cloudforet Admin",
+    author_email="admin@cloudforet.io",
     license="Apache License 2.0",
     packages=find_packages(),
     install_requires=[
