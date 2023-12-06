@@ -16,28 +16,27 @@
 
 from setuptools import setup, find_packages
 
-with open('VERSION', 'r') as f:
+with open("VERSION", "r") as f:
     VERSION = f.read().strip()
     f.close()
 
 setup(
-    name='plugin-naver-works-noti-protocol',
+    name="plugin-naver-works-noti-protocol",
     version=VERSION,
-    description='Notification plugin for Naver Works',
-    long_description='',
-    url='https://www.spaceone.dev/',
-    author='MEGAZONE SpaceONE Team',
-    author_email='admin@spaceone.dev',
-    license='Apache License 2.0',
+    description="Notification plugin for Naver Works",
+    long_description="",
+    url="https://www.spaceone.dev/",
+    author="MEGAZONE SpaceONE Team",
+    author_email="admin@spaceone.dev",
+    license="Apache License 2.0",
     packages=find_packages(),
     install_requires=[
-        'spaceone-core',
-        'spaceone-api',
-        'spaceone-tester',
-        'PyJWT',
-        'requests',
-        'python-dateutil',
-        'pydantic'
+        "spaceone-core",
+        "spaceone-api",
+        "PyJWT",
+        "requests",
+        "python-dateutil",
+        "pydantic",
     ],
     zip_safe=False,
 )

@@ -1,7 +1,7 @@
 from typing import Union
 from pydantic import BaseModel
 
-__all__ = ['ChannelData']
+__all__ = ["ChannelData"]
 
 
 class ChannelData(BaseModel):

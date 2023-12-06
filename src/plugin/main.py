@@ -8,12 +8,12 @@ from plugin.model.channel_data import ChannelData
 
 app = ProtocolPluginServer()
 
-_LOGGER = logging.getLogger('spaceone')
+_LOGGER = logging.getLogger("spaceone")
 
 
-@app.route('Protocol.init')
+@app.route("Protocol.init")
 def protocol_init(params: dict) -> dict:
-    """ init plugin by options
+    """init plugin by options
 
     Args:
         params (ProtocolInitRequest): {
@@ -30,9 +30,9 @@ def protocol_init(params: dict) -> dict:
     return protocol_manager.get_metadata()
 
 
-@app.route('Protocol.verify')
+@app.route("Protocol.verify")
 def protocol_verify(params: dict) -> None:
-    """ Verifying protocol plugin
+    """Verifying protocol plugin
 
     Args:
         params (ProtocolVerifyRequest): {
@@ -47,9 +47,9 @@ def protocol_verify(params: dict) -> None:
     pass
 
 
-@app.route('Notification.dispatch')
+@app.route("Notification.dispatch")
 def notification_dispatch(params: dict):
-    """ dispatch notification
+    """dispatch notification
 
     Args:
         params (NotificationDispatchRequest): {
@@ -64,19 +64,22 @@ def notification_dispatch(params: dict):
         None
     """
 
-    channel_data = ChannelData(**params['channel_data'])
-    channel_id = channel_data.channel_id
-    bot_id = channel_data.bot_id
-    client_id = channel_data.client_id
-    client_secret = channel_data.client_secret
-    service_account_id = channel_data.service_account_id
-    private_key = channel_data.private_key
-
-    message = params['message']
-    notification_type = params['notification_type']
+    channel_data = ChannelData(**params["channel_data"])
+    message = params["message"]
+    notification_type = params["notification_type"]
 
     notification_manager = NotificationManager()
 
-    token_mgr = TokenManager(client_id=client_id, client_secret=client_secret, service_account_id=service_account_id,
-                             private_key=private_key)
-    notification_manager.dispatch(token_mgr, bot_id, channel_id, message, notification_type)
+    token_mgr = TokenManager(
+        client_id=channel_data.client_id,
+        client_secret=channel_data.client_secret,
+        service_account_id=channel_data.service_account_id,
+        private_key=channel_data.private_key,
+    )
+    notification_manager.dispatch(
+        token_mgr,
+        channel_data.bot_id,
+        channel_data.channel_id,
+        message,
+        notification_type,
+    )

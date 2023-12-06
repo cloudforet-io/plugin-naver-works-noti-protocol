@@ -1,18 +1,17 @@
 from spaceone.core.manager import BaseManager
 
 NOTIFICATION_TYPE_MAP = {
-    'INFO': '#43BEFF',
-    'ERROR': '#FF6A6A',
-    'SUCCESS': '#60B731',
-    'WARNING': '#FFCE02',
-    'DEFAULT': '#858895'
+    "INFO": "#43BEFF",
+    "ERROR": "#FF6A6A",
+    "SUCCESS": "#60B731",
+    "WARNING": "#FFCE02",
+    "DEFAULT": "#858895",
 }
 
-HEADER_ICON_URL = 'https://spaceone-custom-assets.s3.ap-northeast-2.amazonaws.com/console-assets/icons/spaceone-logo.png'
+HEADER_ICON_URL = "https://spaceone-custom-assets.s3.ap-northeast-2.amazonaws.com/console-assets/icons/spaceone-logo.png"
 
 
 class MessageManager(BaseManager):
-
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self._message = {
@@ -22,13 +21,8 @@ class MessageManager(BaseManager):
                 "contents": {
                     "type": "bubble",
                     "size": "giga",
-                    "styles": {
-                        "header": {},
-                        "footer": {
-                            "separator": True
-                        }
-                    }
-                }
+                    "styles": {"header": {}, "footer": {"separator": True}},
+                },
             }
         }
 
@@ -42,8 +36,8 @@ class MessageManager(BaseManager):
             "layout": "vertical",
             "contents": [
                 self._icon(HEADER_ICON_URL),
-                self._title(title, notification_type)
-            ]
+                self._title(title, notification_type),
+            ],
         }
 
     def set_body_block(self, description: str, image_url: str, tags: list) -> None:
@@ -51,7 +45,7 @@ class MessageManager(BaseManager):
             "type": "box",
             "layout": "vertical",
             "paddingBottom": "20px",
-            "contents": []
+            "contents": [],
         }
         if description:
             body_data["contents"].append(self._description(description))
@@ -66,7 +60,7 @@ class MessageManager(BaseManager):
             "type": "box",
             "layout": "vertical",
             "separator": True,
-            "contents": []
+            "contents": [],
         }
         if link:
             footer_data["contents"].append(self._button(link))
@@ -79,7 +73,7 @@ class MessageManager(BaseManager):
             "type": "image",
             "align": "end",
             "size": "sm",
-            "aspectRatio": "6:1"
+            "aspectRatio": "6:1",
         }
 
     @staticmethod
@@ -102,25 +96,21 @@ class MessageManager(BaseManager):
                                 {
                                     "layout": "vertical",
                                     "type": "box",
-                                    "contents": [
-                                        {
-                                            "type": "filler"
-                                        }
-                                    ],
+                                    "contents": [{"type": "filler"}],
                                     "width": "4px",
-                                    "backgroundColor": NOTIFICATION_TYPE_MAP[notification_type],
+                                    "backgroundColor": NOTIFICATION_TYPE_MAP[
+                                        notification_type
+                                    ],
                                     "flex": 1,
-                                    "cornerRadius": "sm"
+                                    "cornerRadius": "sm",
                                 },
-                                {
-                                    "type": "filler"
-                                }
+                                {"type": "filler"},
                             ],
-                            "flex": 1
+                            "flex": 1,
                         }
                     ],
                     "flex": 0,
-                    "width": "8px"
+                    "width": "8px",
                 },
                 {
                     "text": title,
@@ -128,9 +118,9 @@ class MessageManager(BaseManager):
                     "size": "lg",
                     "weight": "bold",
                     "color": "#232533",
-                    "wrap": True
-                }
-            ]
+                    "wrap": True,
+                },
+            ],
         }
 
     @staticmethod
@@ -152,11 +142,11 @@ class MessageManager(BaseManager):
                             "wrap": True,
                             "margin": "md",
                             "flex": 7,
-                            "color": "#232533"
+                            "color": "#232533",
                         }
-                    ]
+                    ],
                 }
-            ]
+            ],
         }
 
     @staticmethod
@@ -168,13 +158,8 @@ class MessageManager(BaseManager):
             "paddingTop": "15px",
             "paddingBottom": "10px",
             "contents": [
-                {
-                    "url": image_url,
-                    "type": "image",
-                    "aspectMode": "fit",
-                    "size": "full"
-                }
-            ]
+                {"url": image_url, "type": "image", "aspectMode": "fit", "size": "full"}
+            ],
         }
 
     @staticmethod
@@ -185,7 +170,7 @@ class MessageManager(BaseManager):
             "margin": "xxl",
             "borderColor": "#DCDCDC",
             "borderWidth": "1px",
-            "contents": []
+            "contents": [],
         }
 
         for idx in range(len(tags)):
@@ -196,7 +181,7 @@ class MessageManager(BaseManager):
                 "paddingTop": "6px",
                 "paddingStart": "8px",
                 "paddingEnd": "8px",
-                "contents": []
+                "contents": [],
             }
             if not (idx % 2):
                 row_data["backgroundColor"] = "#F8F8FC"
@@ -211,9 +196,9 @@ class MessageManager(BaseManager):
                         "text": tags[idx]["key"],
                         "color": "#898995",
                         "size": "sm",
-                        "align": "start"
+                        "align": "start",
                     }
-                ]
+                ],
             }
             value_data = {
                 "layout": "horizontal",
@@ -223,17 +208,16 @@ class MessageManager(BaseManager):
                     {
                         "type": "text",
                         "text": tags[idx]["value"],
-
                         "align": "start",
                         "size": "sm",
                         "wrap": True,
-                        "color": "#232533"
+                        "color": "#232533",
                     }
-                ]
+                ],
             }
-            row_data['contents'].append(key_data)
-            row_data['contents'].append(value_data)
-            tags_data['contents'].append(row_data)
+            row_data["contents"].append(key_data)
+            row_data["contents"].append(value_data)
+            tags_data["contents"].append(row_data)
         return tags_data
 
     @staticmethod
@@ -248,11 +232,7 @@ class MessageManager(BaseManager):
                     "style": "link",
                     "color": "#6638B6",
                     "flex": 1,
-                    "action": {
-                        "type": "uri",
-                        "label": "Show More",
-                        "uri": link
-                    }
+                    "action": {"type": "uri", "label": "Show More", "uri": link},
                 }
-            ]
+            ],
         }
