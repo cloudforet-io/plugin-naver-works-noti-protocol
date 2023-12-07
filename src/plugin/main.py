@@ -74,7 +74,7 @@ def notification_dispatch(params: dict):
         client_id=channel_data.client_id,
         client_secret=channel_data.client_secret,
         service_account=channel_data.service_account,
-        private_key=channel_data.private_key,
+        private_key=channel_data.private_key.strip(),
     )
     notification_manager.dispatch(
         token_mgr,
