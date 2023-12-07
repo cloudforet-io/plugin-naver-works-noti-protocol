@@ -28,7 +28,7 @@ class ProtocolManager(BaseManager):
                     "type": "string",
                     "examples": ["ffd23sdv3b"],
                 },
-                "service_account_id": {
+                "service_account": {
                     "description": "service account id associated with the client app",
                     "minLength": 22,
                     "title": "Service Account",

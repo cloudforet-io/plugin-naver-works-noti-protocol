@@ -9,5 +9,5 @@ class ChannelData(BaseModel):
     bot_id: str
     client_id: str
     client_secret: str
-    service_account_id: str
+    service_account: str
     private_key: str
