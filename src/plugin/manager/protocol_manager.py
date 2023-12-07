@@ -28,8 +28,8 @@ class ProtocolManager(BaseManager):
                     "type": "string",
                     "examples": ["ffd23sdv3b"],
                 },
-                "service_account": {
-                    "description": "service account associated with the client app",
+                "service_account_id": {
+                    "description": "service account id associated with the client app",
                     "minLength": 22,
                     "title": "Service Account",
                     "type": "string",
@@ -53,7 +53,7 @@ class ProtocolManager(BaseManager):
                     "description": "private key associated with the client app",
                     "minLength": 1000,
                     "title": "Private Key",
-                    "type": "textarea",
+                    "type": "string",
                     "examples": [
                         "----BEGIN PRIVATE KEY---— .... ----END PRIVATE KEY---—"
                     ],
