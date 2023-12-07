@@ -9,10 +9,10 @@ _LOGGER = logging.getLogger("spaceone")
 
 class TokenManager(BaseManager):
     def __init__(
-        self, *args, client_id, client_secret, service_account_id, private_key, **kwargs
+        self, *args, client_id, client_secret, service_account, private_key, **kwargs
     ):
         super().__init__(*args, **kwargs)
-        _jwt = self._create_jwt_token(client_id, service_account_id, private_key)
+        _jwt = self._create_jwt_token(client_id, service_account, private_key)
         self._token = self._create_access_token(client_id, client_secret, _jwt)
 
     @property
@@ -21,11 +21,11 @@ class TokenManager(BaseManager):
 
     @staticmethod
     def _create_jwt_token(
-        client_id: str, service_account_id: str, private_key: str
+        client_id: str, service_account: str, private_key: str
     ) -> str:
         payload = {
             "iss": client_id,
-            "sub": service_account_id,
+            "sub": service_account,
             "iat": datetime.datetime.utcnow(),
             "exp": datetime.datetime.utcnow() + datetime.timedelta(seconds=3600),
         }
