@@ -185,7 +185,6 @@ class MessageManager(BaseManager):
             }
             if not (idx % 2):
                 row_data["backgroundColor"] = "#F8F8FC"
-            print(tags[idx])
             key_data = {
                 "layout": "horizontal",
                 "type": "box",
