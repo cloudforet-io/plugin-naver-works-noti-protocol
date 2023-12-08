@@ -29,22 +29,6 @@ class TokenManager(BaseManager):
             "iat": datetime.datetime.utcnow(),
             "exp": datetime.datetime.utcnow() + datetime.timedelta(seconds=3600),
         }
-        print(
-            "_________________________________________________START!_____________________________"
-        )
-
-        print(private_key)
-        print("new line count is")
-        print(private_key.count("\n"))
-        print("or")
-        print(private_key.count("\\n"))
-        print("-------------------------------------------------")
-        print("space count is")
-        print(private_key.count(" "))
-
-        print(
-            "_________________________________________________END!_____________________________"
-        )
 
         return jwt.encode(payload, private_key, algorithm="RS256")
 

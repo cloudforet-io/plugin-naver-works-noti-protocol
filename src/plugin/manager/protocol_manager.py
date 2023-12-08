@@ -54,6 +54,7 @@ class ProtocolManager(BaseManager):
                     "minLength": 1000,
                     "title": "Private Key",
                     "type": "string",
+                    "format": "textarea",
                     "examples": [
                         "----BEGIN PRIVATE KEY---— .... ----END PRIVATE KEY---—"
                     ],
