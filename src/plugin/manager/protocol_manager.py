@@ -53,7 +53,8 @@ class ProtocolManager(BaseManager):
                     "description": "private key associated with the client app",
                     "minLength": 1000,
                     "title": "Private Key",
-                    "type": "pem_key",
+                    "type": "string",
+                    "format": "pem_key",
                     "examples": [
                         "----BEGIN PRIVATE KEY---— .... ----END PRIVATE KEY---—"
                     ],
